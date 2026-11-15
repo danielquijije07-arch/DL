@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4 Años Juntos · 16/11/2022 - 16/11/2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-cream: #fdf8f5;
+      --bg-blush: #f7eae4;
+      --primary-rose: #b76e79;
+      --deep-wine: #5c2a35;
+      --gold-accent: #c59b5f;
+      --text-dark: #36262a;
+      --text-muted: #755b61;
+      --card-white: rgba(255, 255, 255, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-dark);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    /* Partículas flotantes de fondo */
+    #petals-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-heart {
+      position: absolute;
+      bottom: -30px;
+      color: var(--primary-rose);
+      opacity: 0.25;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg) scale(0.8); opacity: 0; }
+      20% { opacity: 0.35; }
+      80% { opacity: 0.25; }
+      100% { transform: translateY(-110vh) rotate(360deg) scale(1.2); opacity: 0; }
+    }
+
+    /* Barra de navegación sutil superior */
+    nav.top-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(253, 248, 245, 0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(197, 155, 95, 0.25);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    nav.top-nav a {
+      text-decoration: none;
+      color: var(--deep-wine);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: color 0.25s;
+    }
+
+    nav.top-nav a:hover {
+      color: var(--primary-rose);
+    }
+
+    /* Hero / Portada */
+    header.hero {
+      position: relative;
+      min-height: 95vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: radial-gradient(circle at top right, #f9e4df, var(--bg-cream) 65%),
+                  radial-gradient(circle at bottom left, #f3dcd5, var(--bg-cream) 60%);
+      z-index: 2;
+    }
+
+    .badge-date {
+      display: inline-block;
+      padding: 0.45rem 1.4rem;
+      border: 1px solid var(--gold-accent);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--deep-wine);
+      background: rgba(255, 255, 255, 0.65);
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(6px);
+    }
+
+    h1.main-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-weight: 700;
+      color: var(--deep-wine);
+      line-height: 1.1;
+      margin-bottom: 0.8rem;
+    }
+
+    .script-subtitle {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--primary-rose);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      max-width: 650px;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Contador en vivo */
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      max-width: 620px;
+      width: 100%;
+      margin-bottom: 2.8rem;
+    }
+
+    .counter-box {
+      background: var(--card-white);
+      border: 1px solid rgba(197, 155, 95, 0.35);
+      border-radius: 16px;
+      padding: 1.1rem 0.5rem;
+      box-shadow: 0 10px 25px rgba(92, 42, 53, 0.06);
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease;
+    }
+
+    .counter-box:hover { transform: translateY(-4px); }
+
+    .counter-num {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--deep-wine);
+      line-height: 1;
+    }
+
+    .counter-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary-rose);
+      margin-top: 0.4rem;
+      display: block;
+    }
+
+    .scroll-btn {
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary-rose), var(--deep-wine));
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      box-shadow: 0 10px 25px rgba(183, 110, 121, 0.35);
+      transition: all 0.3s ease;
+    }
+
+    .scroll-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(92, 42, 53, 0.4);
+    }
+
+    /* Secciones Generales */
+    section {
+      position: relative;
+      z-index: 2;
+      padding: 5rem 1.5rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3.2rem;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold-accent);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      color: var(--deep-wine);
+      font-weight: 700;
+    }
+
+    .divider-ornament {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold-accent), transparent);
+      margin: 1rem auto 0;
+    }
+
+    /* Ticket del Bus / Origen */
+    .bus-ticket-card {
+      background: #fff;
+      border-radius: 22px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 50px rgba(92, 42, 53, 0.08);
+      border: 1px solid rgba(197, 155, 95, 0.3);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .bus-ticket-card::before, .bus-ticket-card::after {
+      content: '';
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: var(--bg-cream);
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .bus-ticket-card::before { left: -16px; }
+    .bus-ticket-card::after { right: -16px; }
+
+    .ticket-side h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      color: var(--deep-wine);
+      margin-bottom: 0.5rem;
+    }
+
+    .ticket-side p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .ticket-center {
+      text-align: center;
+      padding: 0 1.5rem;
+      border-left: 2px dashed rgba(183, 110, 121, 0.35);
+      border-right: 2px dashed rgba(183, 110, 95, 0.35);
+    }
+
+    .bus-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .ticket-code {
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      color: var(--gold-accent);
+      font-weight: 600;
+    }
+
+    /* Capítulo Especial: Primer Viaje a Baños */
+    .banos-card {
+      background: linear-gradient(135deg, #ffffff 0%, #f5f9f7 100%);
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      border: 1px solid rgba(197, 155, 95, 0.35);
+      box-shadow: 0 20px 50px rgba(92, 42, 53, 0.08);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .banos-badge {
+      display: inline-block;
+      background: #e6f2ed;
+      color: #2c5e4f;
+      padding: 0.35rem 1rem;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .banos-text h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.1rem;
+      color: var(--deep-wine);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .banos-text p {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    .banos-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.2rem;
+    }
+
+    .banos-pill {
+      background: #fff;
+      border: 1px solid rgba(197, 155, 95, 0.4);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--deep-wine);
+      font-weight: 500;
+    }
+
+    .banos-photo-box {
+      background: #fff;
+      padding: 0.9rem 0.9rem 1.4rem;
+      border-radius: 14px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.09);
+      transform: rotate(2deg);
+      transition: transform 0.3s ease;
+    }
+
+    .banos-photo-box:hover { transform: rotate(0deg) scale(1.03); }
+
+    /* Carta Interactiva (Sobre que se abre) */
+    .envelope-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1rem;
+    }
+
+    .letter-trigger-btn {
+      background: #fff;
+      border: 2px solid var(--primary-rose);
+      color: var(--deep-wine);
+      padding: 1rem 2.2rem;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      box-shadow: 0 10px 25px rgba(183, 110, 121, 0.18);
+      transition: all 0.35s ease;
+    }
+
+    .letter-trigger-btn:hover {
+      background: var(--primary-rose);
+      color: #fff;
+      transform: scale(1.03);
+    }
+
+    .letter-paper {
+      max-width: 800px;
+      width: 100%;
+      background: #fffdf9;
+      border-radius: 18px;
+      padding: 0 2.5rem;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      margin-top: 0;
+      box-shadow: 0 25px 60px rgba(92, 42, 53, 0.12);
+      border: 1px solid rgba(197, 155, 95, 0.35);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+    }
+
+    .letter-paper.open {
+      padding: 3.2rem 2.8rem;
+      max-height: 2800px;
+      opacity: 1;
+      margin-top: 2rem;
+    }
+
+    .letter-paper::before {
+      content: '❝';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: rgba(183, 110, 121, 0.15);
+      position: absolute;
+      top: 10px;
+      left: 25px;
+    }
+
+    .letter-date {
+      text-align: right;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .letter-salutation {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.3rem;
+      color: var(--primary-rose);
+      margin-bottom: 1.2rem;
+    }
+
+    .letter-body p {
+      margin-bottom: 1.25rem;
+      font-size: 1.02rem;
+      color: #3e2c30;
+      text-align: justify;
+    }
+
+    .letter-signature {
+      margin-top: 2rem;
+      text-align: right;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--deep-wine);
+      font-weight: 600;
+    }
+
+    /* Sección Anillo de Promesa */
+    .promise-ring-section {
+      background: linear-gradient(135deg, #5c2a35 0%, #3d1921 100%);
+      color: #fff;
+      border-radius: 28px;
+      padding: 3.8rem 2.5rem;
+      box-shadow: 0 25px 60px rgba(92, 42, 53, 0.28);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(197, 155, 95, 0.45);
+    }
+
+    .promise-ring-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .ring-emblem {
+      font-size: 3rem;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+      filter: drop-shadow(0 0 15px rgba(255, 215, 130, 0.5));
+    }
+
+    .promise-ring-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.1rem, 4vw, 3rem);
+      color: #f7dfc2;
+      margin-bottom: 1rem;
+    }
+
+    .promise-ring-section p {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 1rem;
+      margin-bottom: 1.1rem;
+      text-align: justify;
+    }
+
+    .vows-list {
+      list-style: none;
+      margin-top: 1.5rem;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .vows-list li {
+      background: rgba(255, 255, 255, 0.08);
+      border-left: 3px solid var(--gold-accent);
+      padding: 0.7rem 1rem;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.92rem;
+      color: #fff;
+    }
+
+    /* ÁLBUMES DE FOTOS POR CARPETAS */
+    .albums-tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .album-tab-btn {
+      background: #fff;
+      border: 1.5px solid rgba(183, 110, 121, 0.35);
+      color: var(--deep-wine);
+      padding: 0.75rem 1.4rem;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 18px rgba(92, 42, 53, 0.05);
+    }
+
+    .album-tab-btn:hover {
+      border-color: var(--primary-rose);
+      transform: translateY(-2px);
+    }
+
+    .album-tab-btn.active {
+      background: linear-gradient(135deg, var(--primary-rose), var(--deep-wine));
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 10px 25px rgba(183, 110, 121, 0.35);
+    }
+
+    .album-panel {
+      display: none;
+      animation: fadeInAlbum 0.5s ease;
+    }
+
+    .album-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeInAlbum {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .album-description {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 2rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-style: italic;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .polaroid {
+      background: #fff;
+      padding: 0.9rem 0.9rem 1.4rem;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(92, 42, 53, 0.09);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+    }
+
+    .polaroid:nth-child(odd) { transform: rotate(-1.2deg); }
+    .polaroid:nth-child(even) { transform: rotate(1.2deg); }
+
+    .polaroid:hover {
+      transform: rotate(0deg) scale(1.04);
+      box-shadow: 0 22px 45px rgba(92, 42, 53, 0.16);
+      z-index: 5;
+    }
+
+    .photo-frame {
+      width: 100%;
+      height: 245px;
+      background: linear-gradient(135deg, #f7e6e2, #edd3cd);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-rose);
+      position: relative;
+    }
+
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-placeholder-text {
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .polaroid-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--deep-wine);
+      text-align: center;
+      margin-top: 0.85rem;
+    }
+
+    .polaroid-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.15rem;
+    }
+
+    /* Visor de foto ampliada (Lightbox) */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(25, 12, 16, 0.9);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(5px);
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 82vh;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 3px solid #fff;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 28px;
+      color: #fff;
+      font-size: 2.2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* Línea de tiempo */
+    .timeline {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--gold-accent), var(--primary-rose), var(--gold-accent));
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
+    }
+
+    .timeline-item {
+      padding: 1rem 2.5rem;
+      position: relative;
+      width: 50%;
+      opacity: 0;
+      transform: translateY(25px);
+      transition: all 0.7s ease;
+    }
+
+    .timeline-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .timeline-item.left { left: 0; text-align: right; }
+    .timeline-item.right { left: 50%; text-align: left; }
+
+    .timeline-item::after {
+      content: '❤';
+      position: absolute;
+      width: 34px;
+      height: 34px;
+      right: -17px;
+      background: #fff;
+      border: 2px solid var(--primary-rose);
+      color: var(--primary-rose);
+      top: 1.4rem;
+      border-radius: 50%;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      box-shadow: 0 4px 12px rgba(183, 110, 121, 0.25);
+    }
+
+    .timeline-item.right::after { left: -17px; }
+
+    .timeline-content {
+      padding: 1.6rem;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(92, 42, 53, 0.06);
+      border: 1px solid rgba(197, 155, 95, 0.25);
+    }
+
+    .timeline-year {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--gold-accent);
+      text-transform: uppercase;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--deep-wine);
+      margin: 0.3rem 0 0.6rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* Generador de mensajes sorpresa */
+    .love-jar {
+      background: linear-gradient(135deg, var(--primary-rose), var(--deep-wine));
+      color: #fff;
+      border-radius: 24px;
+      padding: 3.2rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(92, 42, 53, 0.22);
+    }
+
+    .love-jar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .love-jar p.jar-sub {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 0.95rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .jar-quote-box {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 16px;
+      padding: 1.6rem;
+      max-width: 650px;
+      margin: 0 auto 1.8rem;
+      min-height: 95px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-style: italic;
+      backdrop-filter: blur(6px);
+    }
+
+    .jar-btn {
+      background: var(--gold-accent);
+      color: #fff;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .jar-btn:hover {
+      background: #d4aa6d;
+      transform: scale(1.04);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem 4rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    footer .forever {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.4rem;
+      color: var(--primary-rose);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px) {
+      .banos-card, .promise-ring-grid {
+        grid-template-columns: 1fr;
+      }
+      .counter-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .bus-ticket-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .ticket-center {
+        border-left: none;
+        border-right: none;
+        border-top: 2px dashed rgba(183, 110, 121, 0.35);
+        border-bottom: 2px dashed rgba(183, 110, 121, 0.35);
+        padding: 1.2rem 0;
+      }
+      .timeline::after { left: 20px; }
+      .timeline-item {
+        width: 100%;
+        padding-left: 52px;
+        padding-right: 1rem;
+        text-align: left !important;
+      }
+      .timeline-item.right { left: 0; }
+      .timeline-item::after { left: 3px !important; right: auto; }
+      .letter-paper.open { padding: 2.2rem 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Corazones flotantes sutiles -->
+  <div id="petals-container"></div>
+
+  <!-- Navegación rápida -->
+  <nav class="top-nav">
+    <a href="#origen">El Bus</a>
+    <a href="#banos">Viaje a Baños</a>
+    <a href="#carta">Carta</a>
+    <a href="#albumes">Nuestros Álbumes</a>
+    <a href="#promesa">Anillo de Promesa</a>
+    <a href="#historia">4 Años</a>
+  </nav>
+
+  <!-- PORTADA -->
+  <header class="hero">
+    <span class="badge-date">16 · Noviembre · 2022 — 16 · Noviembre · 2026</span>
+    <h1 class="main-title">Cuatro Años de Nosotros</h1>
+    <div class="script-subtitle">Donde un viaje en bus se volvió el destino de mi vida</div>
+    <p class="hero-desc">
+      Han pasado cuatro años desde aquel 16 de noviembre de 2022 en que nuestros caminos coincidieron. 
+      Hoy celebro cada aventura, cada prueba superada y la inmensa suerte de seguir tomados de la mano.
+    </p>
+
+    <!-- Contador en tiempo real desde 16/11/2022 -->
+    <div class="counter-grid" id="counter">
+      <div class="counter-box">
+        <span class="counter-num" id="days">1461</span>
+        <span class="counter-label">Días Juntos</span>
+      </div>
+      <div class="counter-box">
+        <span class="counter-num" id="hours">00</span>
+        <span class="counter-label">Horas</span>
+      </div>
+      <div class="counter-box">
+        <span class="counter-num" id="minutes">00</span>
+        <span class="counter-label">Minutos</span>
+      </div>
+      <div class="counter-box">
+        <span class="counter-num" id="seconds">00</span>
+        <span class="counter-label">Segundos</span>
+      </div>
+    </div>
+
+    <a href="#origen" class="scroll-btn">Recorrer nuestra historia ↓</a>
+  </header>
+
+  <!-- NUESTRO ORIGEN EN EL BUS -->
+  <section id="origen">
+    <div class="section-header">
+      <span class="section-tag">El Punto de Partida</span>
+      <h2 class="section-title">Aquel Viaje del 16/11/2022</h2>
+      <div class="divider-ornament"></div>
+    </div>
+
+    <div class="bus-ticket-card">
+      <div class="ticket-side">
+        <h3>Origen: Un día cualquiera</h3>
+        <p>Subimos a ese bus sin imaginar que entre ventanas, miradas y palabras comenzaría la historia más importante de nuestras vidas.</p>
+      </div>
+      <div class="ticket-center">
+        <span class="bus-icon">🚌✨</span>
+        <span class="ticket-code">BOLETO N.º 16-11-22<br>SIN FECHA DE REGRESO</span>
+      </div>
+      <div class="ticket-side">
+        <h3>Destino: Toda una vida</h3>
+        <p>Cuatro años después seguimos en el mismo viaje, eligiendo el mismo asiento el uno al lado del otro pase lo que pase.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPÍTULO ESPECIAL: PRIMER VIAJE A BAÑOS -->
+  <section id="banos">
+    <div class="section-header">
+      <span class="section-tag">Nuestra Primera Gran Aventura</span>
+      <h2 class="section-title">Nuestro Primer Viaje a Baños</h2>
+      <div class="divider-ornament"></div>
+    </div>
+
+    <div class="banos-card">
+      <div class="banos-text">
+        <span class="banos-badge">🏞️ Recuerdo Inolvidable</span>
+        <h3>Con miedo y todo, pero juntos</h3>
+        <p>
+          Nunca voy a olvidar nuestro primer viaje a Baños. Íbamos con esa mezcla de nervios, miedo a lo nuevo y emoción en el pecho, pero bastó mirarnos y tomarnos de la mano para saber que mientras estuviéramos juntos, todo iba a salir bien.
+        </p>
+        <p>
+          Entre cascadas, paisajes mágicos, risas nerviosas y momentos que se quedaron grabados para siempre en el alma, ese viaje nos enseñó lo increíble que es descubrir el mundo a tu lado. Fue único, especial e irrepetible: la prueba de que contigo hasta el miedo se convierte en la mejor aventura de mi vida.
+        </p>
+        <div class="banos-highlights">
+          <span class="banos-pill">🌿 Paisajes únicos</span>
+          <span class="banos-pill">💓 Nervios y valentía</span>
+          <span class="banos-pill">📸 Recuerdos eternos</span>
+          <span class="banos-pill">🤝 Siempre juntos</span>
+        </div>
+      </div>
+
+      <div class="banos-photo-box" onclick="openLightbox(this)">
+        <div class="photo-frame" style="height: 310px;">
+          <img src="banos_principal.jpg" alt="Nuestro primer viaje a Baños" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+          <div class="photo-placeholder-text" style="display:none;">
+            🏞️ <strong>banos_principal.jpg</strong><br>Coloca aquí tu foto favorita de Baños
+          </div>
+        </div>
+        <div class="polaroid-caption">Baños de Agua Santa</div>
+        <div class="polaroid-sub">Donde vencimos el miedo juntos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARTA DE ANIVERSARIO INTERACTIVA -->
+  <section id="carta">
+    <div class="section-header">
+      <span class="section-tag">De mi corazón para ti</span>
+      <h2 class="section-title">Carta por Nuestro Cuarto Aniversario</h2>
+      <div class="divider-ornament"></div>
+    </div>
+
+    <div class="envelope-wrapper">
+      <button class="letter-trigger-btn" id="toggleLetterBtn" onclick="toggleLetter()">
+        💌 Abrir mi carta para ti
+      </button>
+
+      <article class="letter-paper" id="letterPaper">
+        <div class="letter-date">16 de noviembre de 2026 · 4 años juntos</div>
+        <div class="letter-salutation">Mi amor,</div>
+        <div class="letter-body">
+          <p>
+            A veces me detengo a pensar en lo caprichoso y maravilloso que es el destino. Quién diría que aquel <strong>16 de noviembre de 2022</strong>, en medio de la rutina y dentro de un bus, empezaría a escribirse la historia más bonita, real y profunda que jamás imaginé vivir. Ese día no solo coincidimos en un trayecto; coincidimos en la vida.
+          </p>
+          <p>
+            Hoy cumplimos <strong>cuatro años</strong>, y mirar atrás me llena el pecho de orgullo y ternura. No ha sido un camino perfecto ni siempre fácil; sabemos bien todo lo que nos ha costado afrontar, los días grises, los obstáculos que pusieron a prueba nuestra paciencia y los momentos en los que tuvimos que sostenernos con más fuerza. Pero si algo me ha demostrado todo este tiempo es que <strong>nuestro amor es más grande que cualquier tormenta</strong>. Cada dificultad que superamos juntos nos hizo más fuertes, más nuestros y más seguros de que vale la pena luchar por lo que tenemos.
+          </p>
+          <p>
+            Atesoro cada recuerdo que hemos construido: desde la emoción y los nervios de nuestro primer viaje a Baños hasta nuestras comidas favoritas, las risas espontáneas que curan cualquier mal día, los abrazos que se sienten como llegar a casa y la complicidad que solo nosotros entendemos. Gracias por quedarte, por creer en nosotros y por hacerme sentir que, sin importar adónde vayamos, mi lugar favorito siempre será a tu lado.
+          </p>
+          <p>
+            Feliz cuarto aniversario, mi vida. Gracias por estos 1,461 días de amor sincero. Que este sea apenas el comienzo de todos los años, viajes y sueños que aún nos faltan por cumplir juntos.
+          </p>
+        </div>
+        <div class="letter-signature">
+          Con todo mi amor, hoy y siempre,<br>
+          Tuyo por completo ❤️
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ÁLBUMES DE FOTOS POR CARPETAS -->
+  <section id="albumes">
+    <div class="section-header">
+      <span class="section-tag">Nuestras Carpetas de Recuerdos</span>
+      <h2 class="section-title">Galería de Nuestra Historia</h2>
+      <div class="divider-ornament"></div>
+    </div>
+
+    <!-- Botones de carpetas -->
+    <div class="albums-tabs">
+      <button class="album-tab-btn active" onclick="openAlbum('juntos', this)">💑 Nosotros Juntos</button>
+      <button class="album-tab-btn" onclick="openAlbum('viajes', this)">✈️ Nuestros Viajes</button>
+      <button class="album-tab-btn" onclick="openAlbum('comidas', this)">🍽️ Nuestras Comidas</button>
+      <button class="album-tab-btn" onclick="openAlbum('eventos', this)">🎉 Eventos Especiales</button>
+    </div>
+
+    <!-- CARPETA 1: NOSOTROS JUNTOS -->
+    <div id="album-juntos" class="album-panel active">
+      <p class="album-description">“Mis fotos favoritas son aquellas donde simplemente estamos tú y yo, siendo felices sin necesidad de nada más.”</p>
+      <div class="gallery-grid">
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="juntos1.jpg" alt="Nosotros 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">📸 <strong>juntos1.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Mi persona favorita</div>
+          <div class="polaroid-sub">Siempre contigo</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="juntos2.jpg" alt="Nosotros 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">📸 <strong>juntos2.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Nuestras sonrisas</div>
+          <div class="polaroid-sub">La mejor complicidad</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="juntos3.jpg" alt="Nosotros 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">📸 <strong>juntos3.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Abrazos que curan</div>
+          <div class="polaroid-sub">Mi lugar seguro en el mundo</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="juntos4.jpg" alt="Nosotros 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">📸 <strong>juntos4.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">4 años de amor</div>
+          <div class="polaroid-sub">16/11/2022 — 16/11/2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARPETA 2: VIAJES -->
+    <div id="album-viajes" class="album-panel">
+      <p class="album-description">“Desde nuestro primer viaje a Baños con miedo y emoción, hasta cada camino que seguimos recorriendo de la mano.”</p>
+      <div class="gallery-grid">
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="viaje1.jpg" alt="Viaje 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🏞️ <strong>viaje1.jpg</strong><br>Foto en Baños</div>
+          </div>
+          <div class="polaroid-caption">Primer viaje a Baños</div>
+          <div class="polaroid-sub">Recuerdos inolvidables</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="viaje2.jpg" alt="Viaje 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🌄 <strong>viaje2.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Aventuras únicas</div>
+          <div class="polaroid-sub">Descubriendo lugares juntos</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="viaje3.jpg" alt="Viaje 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🚌 <strong>viaje3.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">En ruta contigo</div>
+          <div class="polaroid-sub">El mejor compañero/a de viaje</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="viaje4.jpg" alt="Viaje 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">✨ <strong>viaje4.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Próximos destinos</div>
+          <div class="polaroid-sub">Nos falta mucho por recorrer</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARPETA 3: COMIDAS -->
+    <div id="album-comidas" class="album-panel">
+      <p class="album-description">“Porque las mejores conversaciones, las risas más sinceras y nuestros momentos más lindos siempre han sido compartiendo la mesa.”</p>
+      <div class="gallery-grid">
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="comida1.jpg" alt="Comida 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🍽️ <strong>comida1.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Nuestras citas favoritas</div>
+          <div class="polaroid-sub">Momentos deliciosos juntos</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="comida2.jpg" alt="Comida 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">☕ <strong>comida2.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Tardes de café y charlas</div>
+          <div class="polaroid-sub">El tiempo vuela contigo</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="comida3.jpg" alt="Comida 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🍰 <strong>comida3.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Antojos compartidos</div>
+          <div class="polaroid-sub">Siempre probando cosas nuevas</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="comida4.jpg" alt="Comida 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🥂 <strong>comida4.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Brindando por nosotros</div>
+          <div class="polaroid-sub">Por muchos años más</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARPETA 4: EVENTOS ESPECIALES -->
+    <div id="album-eventos" class="album-panel">
+      <p class="album-description">“Cumpleaños, logros, fechas importantes y celebraciones donde siempre estuvimos ahí para aplaudirnos y acompañarnos.”</p>
+      <div class="gallery-grid">
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="evento1.jpg" alt="Evento 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🎉 <strong>evento1.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Celebrando logros</div>
+          <div class="polaroid-sub">Orgullosos el uno del otro</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="evento2.jpg" alt="Evento 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">🎂 <strong>evento2.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Fechas inolvidables</div>
+          <div class="polaroid-sub">Cada año más unidos</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="evento3.jpg" alt="Evento 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">✨ <strong>evento3.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Momentos de gala</div>
+          <div class="polaroid-sub">Brillando juntos</div>
+        </div>
+        <div class="polaroid" onclick="openLightbox(this)">
+          <div class="photo-frame">
+            <img src="evento4.jpg" alt="Evento 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">❤️ <strong>evento4.jpg</strong><br>Sube esta foto a GitHub</div>
+          </div>
+          <div class="polaroid-caption">Nuestros aniversarios</div>
+          <div class="polaroid-sub">4 años haciendo historia</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APARTADO ESPECIAL: ANILLO DE PROMESA -->
+  <section id="promesa">
+    <div class="promise-ring-section">
+      <div class="promise-ring-grid">
+        <div>
+          <span class="ring-emblem">💍✨</span>
+          <h2>Nuestro Anillo de Promesa</h2>
+          <p>
+            Más que una joya, este anillo representa el compromiso silencioso y firme de mi corazón con el tuyo. Es el símbolo de estos cuatro años en los que aprendimos a amarnos de verdad, a sostenernos en los días difíciles y a elegirnos sin dudar.
+          </p>
+          <p>
+            Mientras llega el día de dar nuestros siguientes grandes pasos, este anillo guarda mi palabra:
+          </p>
+          <ul class="vows-list">
+            <li>🤍 Prometo cuidar tu corazón y ser siempre tu refugio en los días de tormenta.</li>
+            <li>🤍 Prometo seguir construyendo sueños, viajes y recuerdos únicos a tu lado.</li>
+            <li>🤍 Prometo amarte con paciencia, respeto y la misma ilusión de aquel 16 de noviembre.</li>
+          </ul>
+        </div>
+
+        <div class="banos-photo-box" style="transform: rotate(-1.5deg);" onclick="openLightbox(this)">
+          <div class="photo-frame" style="height: 310px; background: linear-gradient(135deg, #f3e4d7, #e5cbb5);">
+            <img src="anillo_promesa.jpg" alt="Nuestro Anillo de Promesa" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="photo-placeholder-text" style="display:none;">
+              💍 <strong>anillo_promesa.jpg</strong><br>Coloca aquí la foto de sus manos o del anillo de promesa
+            </div>
+          </div>
+          <div class="polaroid-caption">Una Promesa Eterna</div>
+          <div class="polaroid-sub">Hoy, mañana y siempre</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LÍNEA DE TIEMPO -->
+  <section id="historia">
+    <div class="section-header">
+      <span class="section-tag">Nuestros Capítulos</span>
+      <h2 class="section-title">4 Años Paso a Paso</h2>
+      <div class="divider-ornament"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="timeline-year">16 de Noviembre de 2022</span>
+          <h3>El inicio en aquel bus</h3>
+          <p>El instante exacto en que todo comenzó. Una coincidencia que se transformó en el mejor capítulo de nuestra historia.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <span class="timeline-year">Nuestra Primera Aventura</span>
+          <h3>El primer viaje a Baños</h3>
+          <p>Con nervios y miedo al principio, pero llenos de emoción. Descubrimos que juntos cualquier destino se vuelve mágico.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <span class="timeline-year">Superando Pruebas · 2024 - 2025</span>
+          <h3>Más fuertes tras cada dificultad</h3>
+          <p>Todo lo que nos costó afrontar solo sirvió para demostrar que nuestro amor es real, valiente y capaz de superar cualquier obstáculo.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <span class="timeline-year">16 de Noviembre de 2026</span>
+          <h3>Cuatro años y una promesa</h3>
+          <p>Celebramos 4 años de amor inmenso, recuerdos invaluables y la promesa de seguir caminando juntos toda la vida.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRASCO DE DEDICATORIAS INTERACTIVO -->
+  <section id="frasco">
+    <div class="love-jar">
+      <h3>Un Detalle Más Para Ti</h3>
+      <p class="jar-sub">Presiona el botón cada vez que quieras recordar lo mucho que te amo</p>
+      <div class="jar-quote-box" id="quoteDisplay">
+        “Si volviera al 16 de noviembre de 2022, volvería a subir a ese mismo bus mil veces solo para encontrarte.”
+      </div>
+      <button class="jar-btn" onclick="newQuote()">✨ Leer otra dedicatoria</button>
+    </div>
+  </section>
+
+  <footer>
+    <span class="forever">Felices 4 Años, Mi Amor</span>
+    <p>16 de Noviembre de 2022 · Nuestra historia continúa...</p>
+  </footer>
+
+  <!-- Visor de fotos ampliadas -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImg" src="" alt="Recuerdo ampliado">
+  </div>
+
+  <script>
+    // 1. Contador en vivo desde el 16 de noviembre de 2022
+    const startDate = new Date("2022-11-16T00:00:00");
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      document.getElementById("days").textContent = days.toLocaleString("es-ES");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+    setInterval(updateCounter, 1000);
+    updateCounter();
+
+    // 2. Abrir / Cerrar la carta interactiva
+    function toggleLetter() {
+      const paper = document.getElementById("letterPaper");
+      const btn = document.getElementById("toggleLetterBtn");
+      paper.classList.toggle("open");
+      btn.innerHTML = paper.classList.contains("open")
+        ? "💌 Cerrar carta"
+        : "💌 Abrir mi carta para ti";
+    }
+
+    // 3. Cambiar entre carpetas de álbumes
+    function openAlbum(albumName, btnElement) {
+      document.querySelectorAll(".album-panel").forEach(panel => {
+        panel.classList.remove("active");
+      });
+      document.querySelectorAll(".album-tab-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+      document.getElementById("album-" + albumName).classList.add("active");
+      btnElement.classList.add("active");
+    }
+
+    // 4. Ampliar foto al hacer clic (si ya tiene imagen cargada)
+    function openLightbox(cardElement) {
+      const img = cardElement.querySelector("img");
+      if (img && img.style.display !== "none" && img.complete && img.naturalWidth > 0) {
+        document.getElementById("lightboxImg").src = img.src;
+        document.getElementById("lightbox").classList.add("open");
+      }
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").classList.remove("open");
+    }
+
+    // 5. Frases aleatorias en el frasco de dedicatorias
+    const quotes = [
+      "“Si volviera al 16 de noviembre de 2022, volvería a subir a ese mismo bus mil veces solo para encontrarte.”",
+      "“Nuestro primer viaje a Baños me enseñó que contigo hasta el miedo se convierte en el mejor recuerdo de mi vida.”",
+      "“Todo lo que nos ha costado llegar hasta aquí solo hace que valore el doble cada segundo a tu lado.”",
+      "“Este anillo de promesa guarda mi palabra: siempre voy a elegirte, cuidarte y caminar a tu lado.”",
+      "“Cuatro años después, sigues siendo mi persona favorita, mi mejor aventura y mi hogar.”",
+      "“Te amo por lo que fuimos, por lo que somos hoy y por todo lo que aún nos queda por vivir.”"
+    ];
+    let lastIndex = 0;
+
+    function newQuote() {
+      let idx;
+      do {
+        idx = Math.floor(Math.random() * quotes.length);
+      } while (idx === lastIndex);
+      lastIndex = idx;
+      document.getElementById("quoteDisplay").textContent = quotes[idx];
+    }
+
+    // 6. Animación al hacer scroll en la línea de tiempo
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll(".timeline-item").forEach(item => observer.observe(item));
+
+    // 7. Corazones flotantes suaves en el fondo
+    const container = document.getElementById("petals-container");
+    const symbols = ["❤", "♥", "✦"];
+    for (let i = 0; i < 18; i++) {
+      const el = document.createElement("span");
+      el.className = "floating-heart";
+      el.textContent = symbols[i % symbols.length];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.fontSize = (Math.random() * 14 + 10) + "px";
+      el.style.animationDuration = (Math.random() * 12 + 10) + "s";
+      el.style.animationDelay = (Math.random() * 10) + "s";
+      container.appendChild(el);
+    }
+  </script>
+</body>
+</html>
